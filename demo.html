@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>触摸截图</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"/>
+	<style type="text/css">
+	#myCanvas{
+			display: block;
+			margin: 0 auto;
+			border: solid 1px #cacaca;
+		}
+	#myImg{
+		width: 200px;
+		height: 200px;
+		display: block;
+			margin: 0 auto;
+			border: solid 1px #cacaca;
+	}
+		</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="200" height="200" style="border:1px solid #d3d3d3;">
+	</canvas>
+	<br>
+	<input type="file" id="file"><br>
+	<button id="bigger">放大</button>
+	<button id="smaller">缩小</button>
+	<button id="getImg">截图</button>
+	<img src="" alt="" id="myImg">
+	<script type="text/javascript" src="crop.js"></script>
+	<script type="text/javascript">		
+
+		var crop = 	new Crop({fileId:"file",canvasId:"myCanvas"});
+
+
+		var bigger = document.getElementById("bigger");
+		bigger.addEventListener("click", function() {
+			crop.scale(0.05)
+		})
+
+		var smaller = document.getElementById("smaller");
+		smaller.addEventListener("click", function() {
+			crop.scale(-0.05)
+
+		})
+
+		var getImg = document.getElementById("getImg");
+		getImg.addEventListener("click", function() {
+			var  myImg = document.getElementById("myImg");
+			myImg.src = crop.getPicture()
+		})
+		
+
+
+	
+</script>
+</body>
+</html>
